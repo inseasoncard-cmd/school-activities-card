@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>بطاقة تنفيذ برامج الفترات اللاصفية</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#eef2f0;font-family:"Tahoma","Arial",sans-serif;color:#173d39}
+.container{max-width:900px;margin:20px auto;padding:18px}
+.panel{background:#fff;border-radius:18px;padding:20px;box-shadow:0 5px 25px #0001}
+h1{font-size:24px;text-align:center;margin:0 0 18px}
+h2{font-size:18px;margin:18px 0 10px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.field{display:flex;flex-direction:column;gap:5px}
+.field.full{grid-column:1/-1}
+label{font-weight:700;font-size:14px}
+input,select,textarea{font:inherit;padding:10px;border:1px solid #cbd8d4;border-radius:9px;background:#fff}
+textarea{min-height:70px;resize:vertical}
+.timegrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.checks{display:flex;flex-wrap:wrap;gap:12px}
+.actions{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+button{border:0;border-radius:10px;padding:12px 22px;font:inherit;font-weight:700;cursor:pointer}
+.primary{background:#267f78;color:white}.secondary{background:#e7efed;color:#174a45}
+.note{font-size:12px;color:#667;line-height:1.7;margin-top:8px}
+
+#previewWrap{display:none;margin-top:22px}
+.previewPage{position:relative;width:100%;aspect-ratio:1216/1536;background:url("background.jpg") center/100% 100% no-repeat;overflow:hidden}
+.tableBox{position:absolute;left:7.7%;right:7.7%;top:17.3%;font-size:12px;color:#111}
+.title{text-align:center;font-size:23px;font-weight:800;margin-bottom:10px}
+.tbl{border-collapse:collapse;width:100%;table-layout:fixed;background:#fff8}
+.tbl td{border:1px solid #777;padding:5px;text-align:center;vertical-align:middle;height:34px}
+.tbl .head{font-weight:800;background:#fafafa}
+.tbl .label{width:25%;font-weight:800}
+.small{font-size:10px}
+.signatures{display:grid;grid-template-columns:1fr 1fr;gap:35px;position:absolute;left:8%;right:8%;bottom:7%;font-size:13px;color:#111}
+.sig{line-height:2;text-align:center}
+@media(max-width:650px){
+ .grid{grid-template-columns:1fr}.timegrid{grid-template-columns:repeat(2,1fr)}
+ .tableBox{font-size:7px}.title{font-size:14px}.tbl td{padding:2px;height:21px}
+ .small{font-size:6px}.signatures{font-size:8px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="panel">
+<h1>بطاقة تنفيذ برامج الفترات اللاصفية</h1>
+
+<h2>بيانات البرنامج</h2>
+<div class="grid">
+ <div class="field full"><label>اسم البرنامج</label><input id="program"></div>
+ <div class="field"><label>عدد حصص البرنامج</label><input id="lessons" type="number" min="0"></div>
+ <div class="field"><label>الفصل الدراسي</label><input id="semester" placeholder="مثال: الأول"></div>
+ <div class="field full"><label>زمن التنفيذ</label>
+  <div class="timegrid">
+   <input id="assembly" placeholder="الاصطفاف الصباحي">
+   <input id="breaks" placeholder="الاستراحات">
+   <input id="prayer" placeholder="وقت الصلاة">
+   <input id="minutes" placeholder="مجموع الدقائق">
+  </div>
+ </div>
+
+ <div class="field"><label>بداية التنفيذ - اليوم</label><input id="startDay"></div>
+ <div class="field"><label>بداية التنفيذ - الأسبوع</label><input id="startWeek"></div>
+ <div class="field full"><label>بداية التنفيذ - التاريخ</label><input id="startDate" type="date"></div>
+
+ <div class="field"><label>نهاية التنفيذ - اليوم</label><input id="endDay"></div>
+ <div class="field"><label>نهاية التنفيذ - الأسبوع</label><input id="endWeek"></div>
+ <div class="field full"><label>نهاية التنفيذ - التاريخ</label><input id="endDate" type="date"></div>
+
+ <div class="field"><label>المعلم/ة المنفذ/ة</label><input id="teacher"></div>
+ <div class="field"><label>عدد الطلبة المشاركين</label><input id="students" type="number" min="0"></div>
+ <div class="field"><label>عدد الطلبة المشاركين من ذوي الإعاقة</label><input id="disability" type="number" min="0"></div>
+ <div class="field"><label>عدد أولياء الأمور المشاركين في البرنامج</label><input id="parents" type="number" min="0"></div>
+ <div class="field full"><label>أيقونة التنفيذ عند المشاركة عبر منصة مدرستي</label>
+  <div class="checks">
+   <label><input type="checkbox" name="icon" value="بنك الإثراءات"> بنك الإثراءات</label>
+   <label><input type="checkbox" name="icon" value="التطوير الذاتي"> التطوير الذاتي</label>
+   <label><input type="checkbox" name="icon" value="قيمنا الغالية"> قيمنا الغالية</label>
+   <label><input type="checkbox" name="icon" value="نادي القراءة"> نادي القراءة</label>
+  </div>
+ </div>
+ <div class="field"><label>عدد الشراكات المجتمعية</label><input id="partnerships" type="number" min="0"></div>
+ <div class="field"><label>أسماء الشراكات المجتمعية</label><input id="partnerNames"></div>
+ <div class="field full"><label>الشواهد</label><textarea id="evidence"></textarea></div>
+
+ <div class="field"><label>اسم رائد/ة النشاط</label><input id="activityLeader"></div>
+ <div class="field"><label>تاريخ رائد/ة النشاط</label><input id="leaderDate" type="date"></div>
+ <div class="field"><label>توقيع رائد/ة النشاط</label><input id="leaderSign"></div>
+ <div class="field"><label>تاريخ المعلم/ة المنفذ/ة</label><input id="teacherDate" type="date"></div>
+ <div class="field"><label>توقيع المعلم/ة المنفذ/ة</label><input id="teacherSign"></div>
+</div>
+
+<div class="actions">
+ <button class="primary" onclick="makePreview()">معاينة البطاقة</button>
+ <button class="secondary" onclick="window.print()">طباعة / حفظ PDF</button>
+</div>
+<div class="note">هذه نسخة أولية. بعد اعتماد شكل المعاينة نضبط أماكن الجدول والخطوط والمقاسات بدقة على خلفيتك.</div>
+</div>
+
+<div id="previewWrap">
+<div class="panel">
+<div id="capture" class="previewPage">
+ <div class="tableBox">
+  <div class="title">بطاقة تنفيذ برامج الفترات اللاصفية</div>
+  <table class="tbl">
+   <tr><td class="label head">اسم البرنامج</td><td colspan="3" id="pProgram"></td></tr>
+   <tr><td class="label head">عدد حصص البرنامج</td><td colspan="3" id="pLessons"></td></tr>
+   <tr><td class="label head">زمن التنفيذ</td><td class="head">الاصطفاف الصباحي</td><td class="head">الاستراحات</td><td class="head">وقت الصلاة</td></tr>
+   <tr><td></td><td id="pAssembly"></td><td id="pBreaks"></td><td id="pPrayer"></td></tr>
+   <tr><td class="label head">مجموع الدقائق</td><td colspan="3" id="pMinutes"></td></tr>
+   <tr><td class="label head">الفصل الدراسي</td><td colspan="3" id="pSemester"></td></tr>
+   <tr><td class="label head">بداية التنفيذ</td><td id="pStartDay"></td><td id="pStartWeek"></td><td id="pStartDate"></td></tr>
+   <tr><td class="label head">نهاية التنفيذ</td><td id="pEndDay"></td><td id="pEndWeek"></td><td id="pEndDate"></td></tr>
+   <tr><td class="label head">المعلم/ة المنفذ/ة</td><td colspan="3" id="pTeacher"></td></tr>
+   <tr><td class="label head">عدد الطلبة المشاركين</td><td colspan="3" id="pStudents"></td></tr>
+   <tr><td class="label head">عدد الطلبة المشاركين من ذوي الإعاقة</td><td colspan="3" id="pDisability"></td></tr>
+   <tr><td class="label head">عدد أولياء الأمور المشاركين في البرنامج</td><td colspan="3" id="pParents"></td></tr>
+   <tr><td class="label head">أيقونة التنفيذ في منصة مدرستي</td><td colspan="3" id="pIcon" class="small"></td></tr>
+   <tr><td class="label head">عدد الشراكات المجتمعية</td><td colspan="3" id="pPartnerships"></td></tr>
+   <tr><td class="label head">أسماء الشراكات المجتمعية</td><td colspan="3" id="pPartnerNames"></td></tr>
+   <tr><td class="label head">الشواهد</td><td colspan="3" id="pEvidence" class="small"></td></tr>
+  </table>
+ </div>
+ <div class="signatures">
+  <div class="sig">رائد/ة النشاط<br>الاسم: <span id="pLeader"></span><br>التاريخ: <span id="pLeaderDate"></span><br>التوقيع: <span id="pLeaderSign"></span></div>
+  <div class="sig">المعلم/ة المنفذ/ة<br>الاسم: <span id="pTeacher2"></span><br>التاريخ: <span id="pTeacherDate"></span><br>التوقيع: <span id="pTeacherSign"></span></div>
+ </div>
+</div>
+<div class="actions"><button class="primary" onclick="downloadCard()">تحميل البطاقة كصورة</button></div>
+</div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const val=id=>$(id).value||"";
+const dateVal=id=>{const v=val(id); if(!v)return ""; const [y,m,d]=v.split("-"); return `${d}/${m}/${y}`};
+function makePreview(){
+ const map={
+  pProgram:val("program"),pLessons:val("lessons"),pAssembly:val("assembly"),pBreaks:val("breaks"),
+  pPrayer:val("prayer"),pMinutes:val("minutes"),pSemester:val("semester"),pStartDay:val("startDay"),
+  pStartWeek:val("startWeek"),pStartDate:dateVal("startDate"),pEndDay:val("endDay"),pEndWeek:val("endWeek"),
+  pEndDate:dateVal("endDate"),pTeacher:val("teacher"),pStudents:val("students"),pDisability:val("disability"),
+  pParents:val("parents"),pPartnerships:val("partnerships"),pPartnerNames:val("partnerNames"),pEvidence:val("evidence"),
+  pLeader:val("activityLeader"),pLeaderDate:dateVal("leaderDate"),pLeaderSign:val("leaderSign"),
+  pTeacher2:val("teacher"),pTeacherDate:dateVal("teacherDate"),pTeacherSign:val("teacherSign")
+ };
+ Object.entries(map).forEach(([k,v])=>$(k).textContent=v);
+ const icons=[...document.querySelectorAll('input[name="icon"]:checked')].map(x=>x.value);
+ $("pIcon").textContent=icons.join("  •  ");
+ $("previewWrap").style.display="block";
+ $("previewWrap").scrollIntoView({behavior:"smooth"});
+}
+async function downloadCard(){
+ const el=$("capture");
+ const canvas=await html2canvas(el,{scale:2,useCORS:true,backgroundColor:null});
+ const a=document.createElement("a");
+ a.download="بطاقة-تنفيذ-الفترات-اللاصفية.png";
+ a.href=canvas.toDataURL("image/png");
+ a.click();
+}
+</script>
+</body>
+</html>
